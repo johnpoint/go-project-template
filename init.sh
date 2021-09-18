@@ -19,6 +19,7 @@ if [ $# == 1 ]; then
   sed -i 's/{{project_name}}/'$1'/g' initHelper/depend/*
   sed -i 's/{{project_name}}/'$1'/g' model/*
   sed -i 's/{{project_name}}/'$1'/g' model/mongodb/*
+  sed -i 's/{{project_name}}/'$1'/g' .gitignore
   echo 'package main
 import "'$1'/cmd"
 func main(){cmd.Execute()}
@@ -28,6 +29,7 @@ func main(){cmd.Execute()}
   go mod init $1
   go mod tidy
   go build
+  touch config_local.json
   echo "[init] All done"
 fi
 
