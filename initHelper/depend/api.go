@@ -40,5 +40,5 @@ func (r *Api) GetName() string {
 }
 
 func (r *Api) GetDesc() string {
-	return "个号日志API"
+	return "HTTP API"
 }
