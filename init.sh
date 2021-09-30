@@ -15,7 +15,7 @@ if [ $# == 1 ]; then
   sed -i 's/{{project_name}}/'$1'/g' config/*
   sed -i 's/{{project_name}}/'$1'/g' dao/*
   sed -i 's/{{project_name}}/'$1'/g' dao/mongoDao/*
-  sed -i 's/{{project_name}}/'$1'/g' initHelper/*
+  sed -i 's/{{project_name}}/'$1'/g' initHelper/init.go
   sed -i 's/{{project_name}}/'$1'/g' initHelper/depend/*
   sed -i 's/{{project_name}}/'$1'/g' model/*
   sed -i 's/{{project_name}}/'$1'/g' model/mongodb/*
@@ -31,6 +31,7 @@ func main(){cmd.Execute()}
   go build
   touch config_local.json
   echo "[init] All done"
+  rm init.sh
 fi
 
 if [ $# -gt 1 ]; then
