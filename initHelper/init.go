@@ -1,12 +1,12 @@
 package initHelper
 
 import (
-	"{{project_name}}/initHelper/depend"
 	"context"
 	"fmt"
 	"log"
 	"math/rand"
 	"time"
+	"{{project_name}}/initHelper/depend"
 )
 
 type Helper struct {
@@ -30,9 +30,10 @@ func (i *Helper) Init(ctx context.Context) error {
 	return nil
 }
 
-func (i *Helper) AddDepend(depend ...depend.Depend) {
+func (i *Helper) AddDepend(depend ...depend.Depend) *Helper {
 	for j := range depend {
 		depend[j].SetEnable(true)
 		i.Depends = append(i.Depends, depend[j])
 	}
+	return i
 }
