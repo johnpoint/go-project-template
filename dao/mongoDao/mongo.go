@@ -25,7 +25,7 @@ func InitMongoClient(config *config.MongoDBConfig) {
 
 func getMongoClient() *mongo.Client {
 	if MongoClient == nil {
-		InitMongoClient(&config.Config.MongoDBConfig)
+		InitMongoClient(config.Config.MongoDBConfig)
 	}
 	return MongoClient
 }
