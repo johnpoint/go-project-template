@@ -9,10 +9,10 @@ import (
 var Config = &ServiceConfig{}
 
 type ServiceConfig struct {
-	ConfigFile       string        `json:"config_file"`
-	HttpServerListen string        `json:"http_server_listen"`
-	Environment      string        `json:"environment"`
-	MongoDBConfig    MongoDBConfig `json:"mongo_db_config"`
+	ConfigFile       string         `json:"config_file"`
+	HttpServerListen string         `json:"http_server_listen"`
+	Environment      string         `json:"environment"`
+	MongoDBConfig    *MongoDBConfig `json:"mongo_db_config"`
 }
 
 func (c *ServiceConfig) ReadConfig() error {

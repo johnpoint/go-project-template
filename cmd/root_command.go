@@ -25,6 +25,8 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "config_local.json", "config file (default is ./config_local.json)")
+
+	rootCmd.AddCommand(genConfigCommand)
 	rootCmd.AddCommand(httpServerCommand)
 }
 
