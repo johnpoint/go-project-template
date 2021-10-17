@@ -31,13 +31,5 @@ func init() {
 }
 
 func initConfig() {
-	if cfgFile == "" {
-		cfgFile = "config_local.json"
-	}
 	config.Config = &config.ServiceConfig{ConfigFile: cfgFile}
-	fmt.Printf("[init] Config = \033[1;32;40m%s\033[0m\n", cfgFile)
-	if err := config.Config.ReadConfig(); err != nil {
-		panic(err)
-	}
-	fmt.Printf("[init] Env = \033[1;32;40m%s\033[0m\n", config.Config.Environment)
 }
