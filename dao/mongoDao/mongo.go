@@ -1,7 +1,7 @@
 package mongoDao
 
 import (
-	"{{project_name}}/config"
+	"PROJECT_NAME/config"
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

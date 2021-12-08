@@ -2,32 +2,39 @@ package config
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
 var Config = &ServiceConfig{}
 
 type ServiceConfig struct {
-	ConfigFile       string         `json:"config_file"`
+	configPath       string
 	HttpServerListen string         `json:"http_server_listen"`
 	Environment      string         `json:"environment"`
 	MongoDBConfig    *MongoDBConfig `json:"mongo_db_config"`
 }
 
+func (c *ServiceConfig) SetPath(path string) *ServiceConfig {
+	c.configPath = path
+	return c
+}
+
 func (c *ServiceConfig) ReadConfig() error {
-	f, err := os.Open(c.ConfigFile)
+	f, err := os.Open(c.configPath)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	data, err := ioutil.ReadAll(f)
+	cfgByte, err := io.ReadAll(f)
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(data, c); err != nil {
+
+	if err = json.Unmarshal(cfgByte, c); err != nil {
 		return err
 	}
+
 	return nil
 }
 

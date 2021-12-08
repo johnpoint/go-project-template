@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"{{project_name}}/config"
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
@@ -23,13 +22,8 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "config_local.json", "config file (default is ./config_local.json)")
 
 	rootCmd.AddCommand(genConfigCommand)
 	rootCmd.AddCommand(httpServerCommand)
-}
-
-func initConfig() {
-	config.Config = &config.ServiceConfig{ConfigFile: cfgFile}
 }

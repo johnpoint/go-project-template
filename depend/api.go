@@ -1,8 +1,8 @@
 package depend
 
 import (
-	"{{project_name}}/app/controller"
-	"{{project_name}}/config"
+	"PROJECT_NAME/app/controller"
+	"PROJECT_NAME/config"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"

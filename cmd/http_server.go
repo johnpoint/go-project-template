@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"{{project_name}}/initHelper"
-	"{{project_name}}/initHelper/depend"
+	"PROJECT_NAME/depend"
+	"PROJECT_NAME/pkg/bootstrap"
 	"context"
 	"github.com/spf13/cobra"
 )
@@ -12,8 +12,8 @@ var httpServerCommand = &cobra.Command{
 	Short: "Start http server",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.Background()
-		i := initHelper.Helper{}
-		i.AddDepend(new(depend.Api))
+		i := bootstrap.Helper{}
+		i.AddComponent(&depend.Api{})
 		err := i.Init(ctx)
 		if err != nil {
 			panic(err)

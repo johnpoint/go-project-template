@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"{{project_name}}/config"
+	"PROJECT_NAME/config"
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"

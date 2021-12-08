@@ -1,8 +1,8 @@
 package depend
 
 import (
-	"{{project_name}}/config"
-	"{{project_name}}/dao/mongoDao"
+	"PROJECT_NAME/config"
+	"PROJECT_NAME/dao/mongoDao"
 	"context"
 )
 

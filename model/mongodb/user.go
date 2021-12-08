@@ -1,7 +1,7 @@
 package mongodb
 
 import (
-	"{{project_name}}/dao/mongoDao"
+	"PROJECT_NAME/dao/mongoDao"
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 )
