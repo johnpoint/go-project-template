@@ -19,6 +19,8 @@ if [ $# == 1 ]; then
   sed -i 's/PROJECT_NAME/'$1'/g' model/*
   sed -i 's/PROJECT_NAME/'$1'/g' model/mongodb/*
   sed -i 's/PROJECT_NAME/'$1'/g' .gitignore
+  sed -i 's/PROJECT_NAME/'$1'/g' PROJECT_NAME.go
+  mv PROJECT_NAME.go $1.go
   go fmt $1.go
   go fmt .
   go mod init $1
