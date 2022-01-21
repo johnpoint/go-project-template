@@ -4,8 +4,16 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"math/rand"
 	"reflect"
+	"time"
 )
+
+var globalComponent = make([]Component, 0)
+
+func AddGlobalComponent(components ...Component) {
+	globalComponent = append(globalComponent, components...)
+}
 
 type Helper struct {
 	*log.Logger
@@ -14,6 +22,14 @@ type Helper struct {
 
 func (i *Helper) Init(ctx context.Context) error {
 	fmt.Println("[Bootstrap] Start")
+	rand.Seed(time.Now().UnixNano())
+	for j := range globalComponent {
+		fmt.Println(fmt.Sprintf("[Bootstrap] %s", reflect.TypeOf(globalComponent[j])))
+		err := globalComponent[j].Init(ctx)
+		if err != nil {
+			return err
+		}
+	}
 	for j := range i.components {
 		fmt.Println(fmt.Sprintf("[Bootstrap] %s", reflect.TypeOf(i.components[j])))
 		err := i.components[j].Init(ctx)

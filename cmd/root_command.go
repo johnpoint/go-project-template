@@ -1,14 +1,16 @@
 package cmd
 
 import (
+	"PROJECT_NAME/depend"
+	"PROJECT_NAME/pkg/bootstrap"
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
 )
 
 var (
-	rootCmd = &cobra.Command{}
-	cfgFile string
+	rootCmd    = &cobra.Command{}
+	configPath string
 )
 
 func Execute() {
@@ -22,8 +24,20 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "config_local.json", "config file (default is ./config_local.json)")
+	cobra.OnInitialize(initConfig)
+	rootCmd.PersistentFlags().StringVar(&configPath, "config", "config_local.json", "config file (default is ./config_local.json)")
 
 	rootCmd.AddCommand(genConfigCommand)
 	rootCmd.AddCommand(httpServerCommand)
+}
+
+func initConfig() {
+	if configPath == "" {
+		configPath = "config_local.json"
+	}
+	bootstrap.AddGlobalComponent(
+		&depend.Config{
+			Path: configPath,
+		},
+	)
 }
