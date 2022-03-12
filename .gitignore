@@ -1,3 +1,4 @@
 .idea
 PROJECT_NAME
 config_local.json
+go.sum

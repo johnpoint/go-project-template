@@ -1,7 +1,7 @@
 package config
 
 import (
-	"encoding/json"
+	"gopkg.in/yaml.v3"
 	"io"
 	"os"
 )
@@ -10,9 +10,9 @@ var Config = &ServiceConfig{}
 
 type ServiceConfig struct {
 	configPath       string
-	HttpServerListen string         `json:"http_server_listen"`
-	Environment      string         `json:"environment"`
-	MongoDBConfig    *MongoDBConfig `json:"mongo_db_config"`
+	HttpServerListen string         `yaml:"http_server_listen"`
+	Environment      string         `yaml:"environment"`
+	MongoDBConfig    *MongoDBConfig `yaml:"mongo_db_config"`
 }
 
 func (c *ServiceConfig) SetPath(path string) *ServiceConfig {
@@ -31,7 +31,7 @@ func (c *ServiceConfig) ReadConfig() error {
 		return err
 	}
 
-	if err = json.Unmarshal(cfgByte, c); err != nil {
+	if err = yaml.Unmarshal(cfgByte, c); err != nil {
 		return err
 	}
 
@@ -39,6 +39,6 @@ func (c *ServiceConfig) ReadConfig() error {
 }
 
 type MongoDBConfig struct {
-	URL      string `json:"url"`
-	Database string `json:"database"`
+	URL      string `yaml:"url"`
+	Database string `yaml:"database"`
 }
