@@ -3,30 +3,15 @@ package depend
 import (
 	"PROJECT_NAME/config"
 	"PROJECT_NAME/dao/mongoDao"
+	"PROJECT_NAME/pkg/bootstrap"
 	"context"
 )
 
-type MongoDB struct {
-	Enable bool
-}
+type MongoDB struct{}
+
+var _ bootstrap.Component = (*MongoDB)(nil)
 
 func (r *MongoDB) Init(ctx context.Context) error {
 	mongoDao.InitMongoClient(config.Config.MongoDBConfig)
 	return nil
-}
-
-func (r *MongoDB) GetEnable() bool {
-	return r.Enable
-}
-
-func (r *MongoDB) SetEnable(enable bool) {
-	r.Enable = enable
-}
-
-func (r *MongoDB) GetName() string {
-	return "MongoDB"
-}
-
-func (r *MongoDB) GetDesc() string {
-	return "初始化 MongoDB 连接"
 }

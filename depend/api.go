@@ -3,14 +3,15 @@ package depend
 import (
 	"PROJECT_NAME/app/controller"
 	"PROJECT_NAME/config"
+	"PROJECT_NAME/pkg/bootstrap"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
-type Api struct {
-	Enable bool
-}
+type Api struct{}
+
+var _ bootstrap.Component = (*Api)(nil)
 
 func (r *Api) Init(ctx context.Context) error {
 	gin.SetMode(gin.ReleaseMode)
@@ -25,20 +26,4 @@ func (r *Api) Init(ctx context.Context) error {
 		}
 	}()
 	return nil
-}
-
-func (r *Api) GetEnable() bool {
-	return r.Enable
-}
-
-func (r *Api) SetEnable(enable bool) {
-	r.Enable = enable
-}
-
-func (r *Api) GetName() string {
-	return "API"
-}
-
-func (r *Api) GetDesc() string {
-	return "HTTP API"
 }
