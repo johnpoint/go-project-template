@@ -20,6 +20,7 @@ if [ $# == 1 ]; then
   sed -i 's/PROJECT_NAME/'$1'/g' model/mongodb/*
   sed -i 's/PROJECT_NAME/'$1'/g' .gitignore
   sed -i 's/PROJECT_NAME/'$1'/g' PROJECT_NAME.go
+  sed -i 's/PROJECT_NAME/'$1'/g' config_local.yaml
   mv PROJECT_NAME.go $1.go
   go fmt $1.go
   go fmt .
