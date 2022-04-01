@@ -26,8 +26,6 @@ if [ $# == 1 ]; then
   go mod init $1
   go mod tidy
   go build
-  echo "{}" > config_local.json
-  go run $1 genConfig > config_local.json
   rm init.sh
   rm .git -rf
   echo "# "$1 > README.md
