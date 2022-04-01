@@ -1,0 +1,6 @@
+service_name: PROJECT_NAME
+http_server_listen: 0.0.0.0:80
+environment: local
+mongo_db_config:
+  url: mongodb://admin:password@owl_base_service_mongodb:27017/control_center?authSource=admin
+  database: control_center
