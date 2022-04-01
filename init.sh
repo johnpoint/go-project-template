@@ -8,7 +8,7 @@ if [ $# == 1 ]; then
   echo "[init] clean go mod"
   rm go.mod go.sum
   echo "[init] create folder"
-  mkdir app app/controller cmd config dao dao/mongoDao initHelper initHelper/depend model model/mongodb
+  mkdir app app/controller cmd config dao dao/mongoDao model model/mongodb
   echo "[init] create main file"
   sed -i 's/PROJECT_NAME/'$1'/g' app/controller/*
   sed -i 's/PROJECT_NAME/'$1'/g' cmd/*
