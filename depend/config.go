@@ -4,6 +4,7 @@ import (
 	"PROJECT_NAME/config"
 	"PROJECT_NAME/pkg/bootstrap"
 	"context"
+	"github.com/spf13/viper"
 	"math/rand"
 	"time"
 )
@@ -16,5 +17,11 @@ var _ bootstrap.Component = (*Config)(nil)
 
 func (d *Config) Init(ctx context.Context) error {
 	rand.Seed(time.Now().UnixNano())
-	return config.Config.SetPath(d.Path).ReadConfig()
+	viper.AddConfigPath(d.Path)
+	viper.SetConfigType("yaml")
+	err := viper.Unmarshal(config.Config)
+	if err != nil {
+		return err
+	}
+	return nil
 }
