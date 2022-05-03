@@ -3,6 +3,7 @@ package cmd
 import (
 	"PROJECT_NAME/depend"
 	"PROJECT_NAME/pkg/bootstrap"
+	"PROJECT_NAME/pkg/log"
 	"context"
 	"github.com/spf13/cobra"
 )
@@ -16,7 +17,7 @@ var httpServerCommand = &cobra.Command{
 		i.AddComponent(
 			&depend.Logger{},
 			&depend.Api{},
-		)
+		).SetLogger(log.GetLogger())
 		err := i.Init(ctx)
 		if err != nil {
 			panic(err)
