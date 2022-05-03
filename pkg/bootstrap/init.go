@@ -2,8 +2,7 @@ package bootstrap
 
 import (
 	"context"
-	"fmt"
-	"log"
+	"go.uber.org/zap"
 	"math/rand"
 	"reflect"
 	"time"
@@ -16,28 +15,28 @@ func AddGlobalComponent(components ...Component) {
 }
 
 type Helper struct {
-	*log.Logger
+	logger     log
 	components []Component
 }
 
 func (i *Helper) Init(ctx context.Context) error {
-	fmt.Println("[Bootstrap] Start")
+	i.logger.Info("[Bootstrap] Start")
 	rand.Seed(time.Now().UnixNano())
 	for j := range globalComponent {
-		fmt.Println(fmt.Sprintf("[Bootstrap] %s", reflect.TypeOf(globalComponent[j])))
+		i.logger.Info("[Bootstrap]", zap.String("Component", reflect.TypeOf(globalComponent[j]).String()))
 		err := globalComponent[j].Init(ctx)
 		if err != nil {
 			return err
 		}
 	}
 	for j := range i.components {
-		fmt.Println(fmt.Sprintf("[Bootstrap] %s", reflect.TypeOf(i.components[j])))
+		i.logger.Info("[Bootstrap]", zap.String("Component", reflect.TypeOf(i.components[j]).String()))
 		err := i.components[j].Init(ctx)
 		if err != nil {
 			return err
 		}
 	}
-	fmt.Println("[Bootstrap] Finish")
+	i.logger.Info("[Bootstrap] Finish")
 	return nil
 }
 
@@ -45,5 +44,10 @@ func (i *Helper) AddComponent(components ...Component) *Helper {
 	for j := range components {
 		i.components = append(i.components, components[j])
 	}
+	return i
+}
+
+func (i *Helper) SetLogger(logger log) *Helper {
+	i.logger = logger
 	return i
 }
