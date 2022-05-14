@@ -26,14 +26,6 @@ type LevelEncoder = zapcore.LevelEncoder
 type TimeEncoder = zapcore.TimeEncoder
 type EncoderConfig = zapcore.EncoderConfig
 
-var (
-	String  = zap.String
-	Uint64  = zap.Uint64
-	Strings = zap.Strings
-	Err     = zap.Error
-	Any     = zap.Any
-)
-
 type Logger struct {
 	l                *zap.Logger
 	level            Level
@@ -129,18 +121,18 @@ func NewDefaultLogger() *Logger {
 	}
 }
 
-func (l *Logger) Info(msg string, fields ...Field) {
+func (l *Logger) Info(msg string, fields ...zap.Field) {
 	l.l.Info(msg, fields...)
 }
 
-func (l *Logger) Error(msg string, fields ...Field) {
+func (l *Logger) Error(msg string, fields ...zap.Field) {
 	l.l.Error(msg, fields...)
 }
 
-func (l *Logger) Warn(msg string, fields ...Field) {
+func (l *Logger) Warn(msg string, fields ...zap.Field) {
 	l.l.Warn(msg, fields...)
 }
 
-func (l *Logger) Panic(msg string, fields ...Field) {
+func (l *Logger) Panic(msg string, fields ...zap.Field) {
 	l.l.Panic(msg, fields...)
 }
