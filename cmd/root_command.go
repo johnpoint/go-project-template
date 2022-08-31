@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"PROJECT_NAME/depend"
+	"PROJECT_NAME/component"
 	"fmt"
 	"os"
 
@@ -30,10 +30,10 @@ func init() {
 			configPath = "config_local.yaml"
 		}
 		core.AddGlobalComponent(
-			&depend.Config{
+			&component.Config{
 				Path: configPath,
 			},
-			&depend.Logger{},
+			&component.Logger{},
 		)
 	})
 	rootCmd.PersistentFlags().StringVar(&configPath, "config", "config_local.json", "config file (default is ./config_local.yaml)")

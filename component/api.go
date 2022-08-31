@@ -1,4 +1,4 @@
-package depend
+package component
 
 import (
 	"PROJECT_NAME/app/controller"

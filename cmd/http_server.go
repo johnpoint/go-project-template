@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"PROJECT_NAME/depend"
+	"PROJECT_NAME/component"
 	"context"
 
 	"github.com/johnpoint/go-bootstrap/core"
@@ -15,8 +15,8 @@ var httpServerCommand = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.Background()
 		err := core.NewBoot(
-			&depend.Logger{},
-			&depend.Api{},
+			&component.Logger{},
+			&component.Api{},
 		).WithContext(ctx).WithLogger(log.GetLogger()).Init()
 		if err != nil {
 			panic(err)
