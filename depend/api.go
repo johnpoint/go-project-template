@@ -7,12 +7,12 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/johnpoint/go-bootstrap"
+	"github.com/johnpoint/go-bootstrap/core"
 )
 
 type Api struct{}
 
-var _ bootstrap.Component = (*Api)(nil)
+var _ core.Component = (*Api)(nil)
 
 func (r *Api) Init(ctx context.Context) error {
 	gin.SetMode(gin.ReleaseMode)

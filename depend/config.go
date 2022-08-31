@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/johnpoint/go-bootstrap"
+	"github.com/johnpoint/go-bootstrap/core"
 	"github.com/spf13/viper"
 )
 
@@ -15,7 +15,7 @@ type Config struct {
 	Path string
 }
 
-var _ bootstrap.Component = (*Config)(nil)
+var _ core.Component = (*Config)(nil)
 
 func (d *Config) Init(ctx context.Context) error {
 	rand.Seed(time.Now().UnixNano())
