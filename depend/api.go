@@ -3,10 +3,11 @@ package depend
 import (
 	"PROJECT_NAME/app/controller"
 	"PROJECT_NAME/config"
-	"PROJECT_NAME/pkg/bootstrap"
 	"context"
 	"fmt"
+
 	"github.com/gin-gonic/gin"
+	"github.com/johnpoint/go-bootstrap"
 )
 
 type Api struct{}

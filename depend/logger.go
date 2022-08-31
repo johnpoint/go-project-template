@@ -2,9 +2,10 @@ package depend
 
 import (
 	"PROJECT_NAME/config"
-	"PROJECT_NAME/pkg/bootstrap"
 	"PROJECT_NAME/pkg/log"
 	"context"
+
+	"github.com/johnpoint/go-bootstrap"
 	"go.uber.org/zap/zapcore"
 )
 

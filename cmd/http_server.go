@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"PROJECT_NAME/depend"
-	"PROJECT_NAME/pkg/bootstrap"
 	"PROJECT_NAME/pkg/log"
 	"context"
+
+	"github.com/johnpoint/go-bootstrap"
 	"github.com/spf13/cobra"
 )
 
@@ -13,12 +14,11 @@ var httpServerCommand = &cobra.Command{
 	Short: "Start http server",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.Background()
-		i := bootstrap.Helper{}
-		i.AddComponent(
+		err := bootstrap.NewBoot(
+			ctx,
 			&depend.Logger{},
 			&depend.Api{},
-		).SetLogger(log.GetLogger())
-		err := i.Init(ctx)
+		).WithLogger(log.GetLogger()).Init()
 		if err != nil {
 			panic(err)
 			return

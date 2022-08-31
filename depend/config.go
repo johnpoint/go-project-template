@@ -2,12 +2,13 @@ package depend
 
 import (
 	"PROJECT_NAME/config"
-	"PROJECT_NAME/pkg/bootstrap"
 	"context"
 	"fmt"
-	"github.com/spf13/viper"
 	"math/rand"
 	"time"
+
+	"github.com/johnpoint/go-bootstrap"
+	"github.com/spf13/viper"
 )
 
 type Config struct {

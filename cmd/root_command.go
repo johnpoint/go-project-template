@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"PROJECT_NAME/depend"
-	"PROJECT_NAME/pkg/bootstrap"
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/johnpoint/go-bootstrap"
+	"github.com/spf13/cobra"
 )
 
 var (
