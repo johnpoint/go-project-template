@@ -21,7 +21,6 @@ var httpServerCommand = &cobra.Command{
 		).WithLogger(log.GetLogger()).Init()
 		if err != nil {
 			panic(err)
-			return
 		}
 
 		forever := make(chan struct{})
