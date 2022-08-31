@@ -25,12 +25,10 @@ func (d *Config) Init(ctx context.Context) error {
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(err)
-		return err
 	}
 	err = viper.Unmarshal(config.Config)
 	if err != nil {
 		panic(err)
-		return err
 	}
 	return nil
 }

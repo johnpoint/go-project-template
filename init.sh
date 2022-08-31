@@ -8,16 +8,12 @@ if [ $# == 1 ]; then
   echo "[init] clean go mod"
   rm go.mod go.sum
   echo "[init] create folder"
-  mkdir app app/controller cmd config dao dao/mongoDao model model/mongodb
+  mkdir app app/controller cmd config
   echo "[init] create main file"
   sed -i 's/PROJECT_NAME/'$1'/g' app/controller/*
   sed -i 's/PROJECT_NAME/'$1'/g' cmd/*
   sed -i 's/PROJECT_NAME/'$1'/g' config/*
-  sed -i 's/PROJECT_NAME/'$1'/g' dao/*
-  sed -i 's/PROJECT_NAME/'$1'/g' dao/mongoDao/*
   sed -i 's/PROJECT_NAME/'$1'/g' depend/*
-  sed -i 's/PROJECT_NAME/'$1'/g' model/*
-  sed -i 's/PROJECT_NAME/'$1'/g' model/mongodb/*
   sed -i 's/PROJECT_NAME/'$1'/g' .gitignore
   sed -i 's/PROJECT_NAME/'$1'/g' PROJECT_NAME.go
   sed -i 's/PROJECT_NAME/'$1'/g' infra/error.go
