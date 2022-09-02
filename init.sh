@@ -11,7 +11,7 @@ if [ $# == 1 ]; then
   sed -i 's/PROJECT_NAME/'$1'/g' app/controller/*
   sed -i 's/PROJECT_NAME/'$1'/g' cmd/*
   sed -i 's/PROJECT_NAME/'$1'/g' config/*
-  sed -i 's/PROJECT_NAME/'$1'/g' depend/*
+  sed -i 's/PROJECT_NAME/'$1'/g' component/*
   sed -i 's/PROJECT_NAME/'$1'/g' .gitignore
   sed -i 's/PROJECT_NAME/'$1'/g' PROJECT_NAME.go
   sed -i 's/PROJECT_NAME/'$1'/g' infra/error.go
