@@ -11,7 +11,7 @@ if [ $# == 1 ]; then
   sed -i 's/PROJECT_NAME/'$1'/g' app/controller/*
   sed -i 's/PROJECT_NAME/'$1'/g' cmd/*
   sed -i 's/PROJECT_NAME/'$1'/g' config/*
-  sed -i 's/PROJECT_NAME/'$1'/g' component/*
+  sed -i 's/PROJECT_NAME/'$1'/g' depend/*
   sed -i 's/PROJECT_NAME/'$1'/g' .gitignore
   sed -i 's/PROJECT_NAME/'$1'/g' PROJECT_NAME.go
   sed -i 's/PROJECT_NAME/'$1'/g' infra/error.go
@@ -23,7 +23,7 @@ if [ $# == 1 ]; then
   go build
   rm init.sh
   rm .git -rf
-  echo "# "$1 >README.md
+  echo "# "$1 > README.md
   echo "[init] All done"
 fi
 
