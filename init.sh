@@ -23,7 +23,7 @@ if [ $# == 1 ]; then
   go build
   rm init.sh
   rm .git -rf
-  echo "# "$1 > README.md
+  echo "# "$1 >README.md
   echo "[init] All done"
 fi
 
