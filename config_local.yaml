@@ -1,3 +1,6 @@
 service_name: PROJECT_NAME
-http_server_listen: 0.0.0.0:80
 environment: local
+
+api_server_listen: 0.0.0.0:8088
+cors:
+  - localhost

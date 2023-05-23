@@ -3,7 +3,6 @@ package cmd
 import (
 	"PROJECT_NAME/component"
 	"context"
-
 	"github.com/johnpoint/go-bootstrap/core"
 	"github.com/johnpoint/go-bootstrap/log"
 	"github.com/spf13/cobra"

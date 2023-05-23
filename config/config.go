@@ -9,7 +9,9 @@ const (
 )
 
 type ServiceConfig struct {
-	ServiceName      string `mapstructure:"service_name"`
-	HttpServerListen string `mapstructure:"http_server_listen"`
-	Environment      string `mapstructure:"environment"`
+	ServiceName string `mapstructure:"service_name"`
+	Environment string `mapstructure:"environment"`
+
+	CORS            []string `mapstructure:"cors"`
+	ApiServerListen string   `mapstructure:"api_server_listen"`
 }

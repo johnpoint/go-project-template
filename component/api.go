@@ -1,30 +1,31 @@
 package component
 
 import (
-	"PROJECT_NAME/app/controller"
 	"PROJECT_NAME/config"
 	"context"
-	"fmt"
-
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/johnpoint/go-bootstrap/core"
+	ginBoot "github.com/johnpoint/go-bootstrap/gin"
+	ginBootMiddlware "github.com/johnpoint/go-bootstrap/gin/middleware"
+	"time"
 )
 
 type Api struct{}
 
 var _ core.Component = (*Api)(nil)
 
-func (r *Api) Init(ctx context.Context) error {
-	gin.SetMode(gin.ReleaseMode)
-	routerGin := gin.New()
-	routerGin.GET("/ping", controller.Pong)
-
-	go func() {
-		fmt.Println("[init] HTTP Listen at " + config.Config.HttpServerListen)
-		err := routerGin.Run(config.Config.HttpServerListen)
-		if err != nil {
-			panic(err)
-		}
-	}()
-	return nil
+func (r *Api) Init(c context.Context) error {
+	return ginBoot.NewApiServer(config.Config.ApiServerListen,
+		gin.Recovery(),
+		cors.New(cors.Config{
+			AllowOrigins:     config.Config.CORS,
+			AllowMethods:     []string{"PUT", "GET", "POST", "DELETE"},
+			AllowHeaders:     []string{"Origin", "content-type", "Cookie", "x-token"},
+			ExposeHeaders:    []string{"Content-Length"},
+			AllowCredentials: true,
+			MaxAge:           12 * time.Hour,
+		}),
+		ginBootMiddlware.LogPlusMiddleware(),
+	).Init(c)
 }
