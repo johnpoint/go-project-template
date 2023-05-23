@@ -1,0 +1,7 @@
+group:
+  - name: 系统API
+    apis:
+      - name: State
+        path: /state
+        desc: 获取API服务状态
+        method: GET
