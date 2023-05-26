@@ -3,7 +3,7 @@
 package services
 
 import (
-	"PROJECT_NAME/app/schemas"
+	"PROJECT_NAME/schemas"
 	"context"
 	"github.com/gin-gonic/gin"
 )

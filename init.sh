@@ -8,7 +8,6 @@ if [ $# == 1 ]; then
   echo "[init] clean go mod"
   rm go.mod go.sum
   echo "[init] create main file"
-  sed -i 's/PROJECT_NAME/'$1'/g' app/controller/*
   sed -i 's/PROJECT_NAME/'$1'/g' cmd/*
   sed -i 's/PROJECT_NAME/'$1'/g' config/*
   sed -i 's/PROJECT_NAME/'$1'/g' component/*
@@ -23,6 +22,7 @@ if [ $# == 1 ]; then
   go build
   rm init.sh
   rm .git -rf
+  newapi gen --config api.yaml
   echo "# "$1 > README.md
   echo "[init] All done"
 fi

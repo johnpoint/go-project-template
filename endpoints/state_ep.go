@@ -6,7 +6,7 @@
 package endpoints
 
 import (
-	"PROJECT_NAME/app/services"
+	"PROJECT_NAME/services"
 	"github.com/gin-gonic/gin"
 	ginBoot "github.com/johnpoint/go-bootstrap/gin"
 )
