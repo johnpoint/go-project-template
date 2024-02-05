@@ -1,13 +1,28 @@
 package cmd
 
 import (
-	"PROJECT_NAME/component"
+	"PROJECT_NAME/config"
 	"fmt"
+	"log/slog"
 	"os"
 
-	"github.com/johnpoint/go-bootstrap/core"
 	"github.com/spf13/cobra"
 )
+
+func Level(level string) slog.Level {
+	switch level {
+	case "debug":
+		return slog.LevelDebug
+	case "info":
+		return slog.LevelInfo
+	case "warn":
+		return slog.LevelWarn
+	case "error":
+		return slog.LevelError
+	default:
+		return slog.LevelInfo
+	}
+}
 
 var (
 	rootCmd    = &cobra.Command{}
@@ -25,18 +40,8 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(func() {
-		if configPath == "" {
-			configPath = "config_local.yaml"
-		}
-		core.AddGlobalComponent(
-			&component.Config{
-				Path: configPath,
-			},
-			&component.Logger{},
-		)
-	})
 	rootCmd.PersistentFlags().StringVar(&configPath, "config", "config_local.yaml", "config file (default is ./config_local.yaml)")
 
 	rootCmd.AddCommand(httpServerCommand)
+	config.InitConfig(configPath)
 }
